@@ -1,16 +1,16 @@
-use std::collections::HashMap;
+pub mod route;
+
 use warp::Filter;
+
+const IP: [u8; 4] = [127, 0, 0, 1];
+const PORT: u16 = 8080;
 
 #[tokio::main]
 async fn main() {
-    let home = warp::path::end().map(|| {
-        let mut body = HashMap::new();
+    let url = (IP, PORT);
 
-        body.insert("name", "username");
-        body.insert("content", "something");
+    let home = warp::path::end();
+    let routes = home.map(route::home);
 
-        warp::reply::json(&body)
-    });
-
-    warp::serve(home).run(([127, 0, 0, 1], 8080)).await
+    warp::serve(routes).run(url).await
 }
