@@ -1,4 +1,4 @@
-pub mod route;
+pub mod routes;
 
 use warp::Filter;
 
@@ -10,7 +10,7 @@ async fn main() {
     let url = (IP, PORT);
 
     let home = warp::path::end();
-    let routes = home.map(route::home);
+    let routes = home.map(routes::load);
 
     warp::serve(routes).run(url).await
 }
