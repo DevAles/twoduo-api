@@ -1,11 +1,9 @@
-use std::collections::HashMap;
-use warp::reply::Json;
+use warp::{reply::Json, Filter};
 
-pub fn load() -> Json {
-    let mut body = HashMap::new();
+pub fn load() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
+    warp::path::end().and(warp::get()).and_then(get_json)
+}
 
-    body.insert("name", "username");
-    body.insert("content", "something");
-
-    warp::reply::json(&body)
+async fn get_json() -> Result<Json, warp::Rejection> {
+    todo!()
 }
