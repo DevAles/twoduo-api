@@ -7,7 +7,7 @@ pub fn load() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection
 
 async fn get_json() -> Result<Json, warp::Rejection> {
     let tasks = vec!["two", "duo"];
-    let json = json!([{ "tasks": tasks }]);
+    let json = json!({ "tasks": tasks });
 
     let response = warp::reply::json(&json);
 
