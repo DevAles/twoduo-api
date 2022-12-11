@@ -2,7 +2,10 @@ use serde_json::json;
 use warp::{reply::Json, Filter};
 
 pub fn load() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
-    warp::path::end().and(warp::get()).and_then(get_json)
+    warp::path::end()
+        .and(warp::get())
+        .and_then(get_json)
+        .with(warp::cors().allow_any_origin())
 }
 
 async fn get_json() -> Result<Json, warp::Rejection> {
