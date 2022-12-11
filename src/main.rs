@@ -1,6 +1,6 @@
 pub mod routes;
 
-const IP: [u8; 4] = [127, 0, 0, 1];
+const IP: [u8; 4] = [0, 0, 0, 0];
 const PORT: u16 = 8000;
 
 #[tokio::main]
