@@ -1,3 +1,4 @@
+pub mod auth;
 pub mod routes;
 
 const IP: [u8; 4] = [0, 0, 0, 0];
